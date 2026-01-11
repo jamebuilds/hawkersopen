@@ -12,14 +12,6 @@ class Closure extends Model
     /** @use HasFactory<\Database\Factories\ClosureFactory> */
     use HasFactory;
 
-    protected $fillable = [
-        'hawker_center_id',
-        'type',
-        'start_date',
-        'end_date',
-        'remarks',
-    ];
-
     /**
      * @return array<string, string>
      */

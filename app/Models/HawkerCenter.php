@@ -11,15 +11,6 @@ class HawkerCenter extends Model
     /** @use HasFactory<\Database\Factories\HawkerCenterFactory> */
     use HasFactory;
 
-    protected $fillable = [
-        'external_id',
-        'name',
-        'address',
-        'latitude',
-        'longitude',
-        'photo_url',
-    ];
-
     /**
      * @return HasMany<Closure, $this>
      */
