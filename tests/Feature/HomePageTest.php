@@ -16,7 +16,7 @@ it('shows message when no hawker centers are closing soon', function () {
     $response = $this->get('/');
 
     $response->assertSuccessful()
-        ->assertSee('No hawker centers are scheduled to close in the next 30 days');
+        ->assertSee('No hawker centers are scheduled to close in the next 15 days');
 });
 
 it('displays hawker centers with upcoming cleaning', function () {

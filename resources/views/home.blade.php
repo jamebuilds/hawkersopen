@@ -10,12 +10,12 @@
     <div class="max-w-4xl mx-auto px-4 py-8">
         <header class="mb-8">
             <h1 class="text-3xl font-bold text-gray-900">Hawker Centers Closing Soon</h1>
-            <p class="text-gray-600 mt-2">Hawker centers closed for cleaning or other works in the next 30 days</p>
+            <p class="text-gray-600 mt-2">Hawker centers closed for cleaning or other works in the next 15 days</p>
         </header>
 
         @if($closures->isEmpty())
             <div class="bg-white rounded-lg shadow p-6 text-center">
-                <p class="text-gray-500">No hawker centers are scheduled to close in the next 30 days.</p>
+                <p class="text-gray-500">No hawker centers are scheduled to close in the next 15 days.</p>
                 <p class="text-gray-400 text-sm mt-2">Run <code class="bg-gray-100 px-1 rounded">php artisan hawker:sync</code> to fetch the latest data.</p>
             </div>
         @else

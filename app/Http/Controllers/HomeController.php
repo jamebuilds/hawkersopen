@@ -11,7 +11,7 @@ class HomeController extends Controller
     {
         $closures = Closure::query()
             ->with('hawkerCenter')
-            ->upcoming(30)
+            ->upcoming(15)
             ->orderBy('start_date')
             ->get();
 
