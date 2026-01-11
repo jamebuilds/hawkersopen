@@ -32,6 +32,11 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+    <style>
+        .pwa-only { display: none; }
+        @media (display-mode: standalone) { .pwa-only { display: flex; } }
+    </style>
 </head>
 <body class="bg-gray-50 min-h-screen">
     <div class="max-w-4xl mx-auto px-4 py-8">
@@ -40,6 +45,16 @@
             <h1 class="text-3xl font-bold text-gray-900">Singapore Hawker Centre Closures</h1>
             <p class="text-gray-600 mt-2">Hawker centres closing for cleaning or maintenance in the next 15 days</p>
         </header>
+
+        <div class="pwa-only items-center gap-3 mb-4">
+            <button id="refresh-btn" class="inline-flex items-center px-4 py-2 bg-blue-500 text-white rounded-lg shadow hover:bg-blue-600 transition-colors">
+                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                </svg>
+                Refresh
+            </button>
+            <span id="refresh-message" class="text-green-600 font-medium hidden">Refreshed!</span>
+        </div>
 
         @if($closures->isEmpty())
             <div class="bg-white rounded-lg shadow p-6 text-center">
@@ -84,5 +99,12 @@
             <p>Data from <a href="https://data.gov.sg" class="underline hover:text-gray-600">data.gov.sg</a></p>
         </footer>
     </div>
+
+    <script>
+        document.getElementById('refresh-btn')?.addEventListener('click', function() {
+            document.getElementById('refresh-message').classList.remove('hidden');
+            setTimeout(() => window.location.reload(), 500);
+        });
+    </script>
 </body>
 </html>
