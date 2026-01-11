@@ -1,7 +1,7 @@
 {
-    "name": "Hawkers Open",
-    "short_name": "Hawkers",
-    "description": "Hawker Centers Closing Soon",
+    "name": "Singapore Hawker Centre Closures",
+    "short_name": "Hawker SG",
+    "description": "Check which Singapore hawker centres are closing for cleaning or maintenance",
     "start_url": "/",
     "display": "standalone",
     "theme_color": "#f9fafb",
