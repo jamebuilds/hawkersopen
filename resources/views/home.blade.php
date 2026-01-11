@@ -32,12 +32,25 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <style>
+        @media (display-mode: standalone) {
+            .pwa-only { display: flex !important; }
+        }
+    </style>
 </head>
 <body class="bg-gray-50 min-h-screen">
     <div class="max-w-4xl mx-auto px-4 py-8">
-        <header class="mb-8">
-            <h1 class="text-3xl font-bold text-gray-900">Singapore Hawker Centre Closures</h1>
-            <p class="text-gray-600 mt-2">Hawker centres closing for cleaning or maintenance in the next 15 days</p>
+
+        <header class="mb-8 flex justify-between items-start">
+            <div>
+                <h1 class="text-3xl font-bold text-gray-900">Singapore Hawker Centre Closures</h1>
+                <p class="text-gray-600 mt-2">Hawker centres closing for cleaning or maintenance in the next 15 days</p>
+            </div>
+            <button onclick="location.reload()" class="pwa-only hidden items-center justify-center w-10 h-10 rounded-full bg-white shadow hover:bg-gray-50 active:bg-gray-100" aria-label="Refresh">
+                <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                </svg>
+            </button>
         </header>
 
         @if($closures->isEmpty())
