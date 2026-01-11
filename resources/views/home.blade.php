@@ -3,14 +3,41 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Hawker Centers Closing Soon</title>
+    <title>Singapore Hawker Centre Closing Dates | Cleaning Schedule</title>
+    <meta name="description" content="Check which Singapore hawker centres are closing for cleaning or maintenance. Updated daily with official NEA data for the next 15 days.">
+    <meta name="keywords" content="singapore hawker centre, hawker center closing, cleaning schedule, NEA, hawker centre maintenance">
+    <link rel="canonical" href="{{ url('/') }}">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Singapore Hawker Centre Closing Dates">
+    <meta property="og:description" content="Check which Singapore hawker centres are closing for cleaning or maintenance. Updated daily with official NEA data.">
+    <meta property="og:url" content="{{ url('/') }}">
+    <meta property="og:image" content="{{ url('/icons/icon-512x512.png') }}">
+    <meta property="og:locale" content="en_SG">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Singapore Hawker Centre Closing Dates">
+    <meta name="twitter:description" content="Check which Singapore hawker centres are closing for cleaning or maintenance.">
+    <meta name="twitter:image" content="{{ url('/icons/icon-512x512.png') }}">
+
+    <!-- PWA -->
+    <meta name="theme-color" content="#f9fafb">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="bg-gray-50 min-h-screen">
     <div class="max-w-4xl mx-auto px-4 py-8">
         <header class="mb-8">
-            <h1 class="text-3xl font-bold text-gray-900">Hawker Centers Closing Soon</h1>
-            <p class="text-gray-600 mt-2">Hawker centers closed for cleaning or other works in the next 15 days</p>
+            <h1 class="text-3xl font-bold text-gray-900">Singapore Hawker Centre Closures</h1>
+            <p class="text-gray-600 mt-2">Hawker centres closing for cleaning or maintenance in the next 15 days</p>
         </header>
 
         @if($closures->isEmpty())
