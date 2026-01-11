@@ -8,30 +8,25 @@ uses(\Illuminate\Foundation\Testing\RefreshDatabase::class);
 
 it('syncs hawker centers from api', function () {
     Http::fake([
-        'data.gov.sg/*' => Http::response([
-            'result' => [
-                'total' => 2,
-                'records' => [
-                    [
-                        '_id' => 1,
-                        'name' => 'Test Hawker Centre',
-                        'address_myenv' => '123 Test Street',
-                        'latitude_hc' => '1.3456',
-                        'longitude_hc' => '103.8765',
-                        'q1_cleaningstartdate' => '15/1/2026',
-                        'q1_cleaningenddate' => '18/1/2026',
-                    ],
-                    [
-                        '_id' => 2,
-                        'name' => 'Another Hawker Centre',
-                        'address_myenv' => '456 Another Street',
-                        'other_works_startdate' => '1/2/2026',
-                        'other_works_enddate' => '28/2/2026',
-                        'remarks_other_works' => 'Renovation works',
-                    ],
-                ],
-            ],
-        ]),
+        'data.gov.sg/*' => Http::response(fakeHawkerApiResponse([
+            makeHawkerRecord([
+                '_id' => 1,
+                'name' => 'Test Hawker Centre',
+                'address_myenv' => '123 Test Street',
+                'latitude_hc' => '1.3456',
+                'longitude_hc' => '103.8765',
+                'q1_cleaningstartdate' => '15/1/2026',
+                'q1_cleaningenddate' => '18/1/2026',
+            ]),
+            makeHawkerRecord([
+                '_id' => 2,
+                'name' => 'Another Hawker Centre',
+                'address_myenv' => '456 Another Street',
+                'other_works_startdate' => '1/2/2026',
+                'other_works_enddate' => '28/2/2026',
+                'remarks_other_works' => 'Renovation works',
+            ]),
+        ])),
     ]);
 
     $this->artisan('hawker:sync')
@@ -71,19 +66,14 @@ it('handles api failure gracefully', function () {
 
 it('handles invalid dates gracefully', function () {
     Http::fake([
-        'data.gov.sg/*' => Http::response([
-            'result' => [
-                'total' => 1,
-                'records' => [
-                    [
-                        '_id' => 1,
-                        'name' => 'Hawker With TBC Dates',
-                        'q1_cleaningstartdate' => 'TBC',
-                        'q1_cleaningenddate' => 'NA',
-                    ],
-                ],
-            ],
-        ]),
+        'data.gov.sg/*' => Http::response(fakeHawkerApiResponse([
+            makeHawkerRecord([
+                '_id' => 1,
+                'name' => 'Hawker With TBC Dates',
+                'q1_cleaningstartdate' => 'TBC',
+                'q1_cleaningenddate' => 'NA',
+            ]),
+        ])),
     ]);
 
     $this->artisan('hawker:sync')->assertSuccessful();
@@ -100,19 +90,14 @@ it('updates existing records on subsequent syncs', function () {
     Closure::factory()->for($hawker)->create();
 
     Http::fake([
-        'data.gov.sg/*' => Http::response([
-            'result' => [
-                'total' => 1,
-                'records' => [
-                    [
-                        '_id' => 1,
-                        'name' => 'Updated Name',
-                        'q1_cleaningstartdate' => '1/3/2026',
-                        'q1_cleaningenddate' => '3/3/2026',
-                    ],
-                ],
-            ],
-        ]),
+        'data.gov.sg/*' => Http::response(fakeHawkerApiResponse([
+            makeHawkerRecord([
+                '_id' => 1,
+                'name' => 'Updated Name',
+                'q1_cleaningstartdate' => '1/3/2026',
+                'q1_cleaningenddate' => '3/3/2026',
+            ]),
+        ])),
     ]);
 
     $this->artisan('hawker:sync')->assertSuccessful();

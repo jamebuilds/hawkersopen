@@ -41,7 +41,23 @@ expect()->extend('toBeOne', function () {
 |
 */
 
-function something()
+function fakeHawkerApiResponse(array $records): array
 {
-    // ..
+    return [
+        'result' => [
+            'total' => count($records),
+            'records' => $records,
+        ],
+    ];
+}
+
+function makeHawkerRecord(array $attributes = []): array
+{
+    static $id = 0;
+    $id++;
+
+    return array_merge([
+        '_id' => $attributes['_id'] ?? $id,
+        'name' => "Test Hawker Centre {$id}",
+    ], $attributes);
 }

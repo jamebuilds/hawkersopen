@@ -140,6 +140,7 @@ class SyncHawkerCentersCommand extends Command
         }
 
         try {
+            // j/n/Y = day of month without leading zero / month without leading zero / 4 digits year
             return Carbon::createFromFormat('j/n/Y', $value);
         } catch (\Exception) {
             return null;
